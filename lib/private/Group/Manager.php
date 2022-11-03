@@ -345,9 +345,9 @@ class Manager extends PublicEmitter implements IGroupManager {
 
 	/**
 	 * @param string $groupId
-	 * @return string
+	 * @return ?string
 	 */
-	public function getDisplayName(string $groupId): string {
+	public function getDisplayName(string $groupId): ?string {
 		return $this->displayNameCache->getDisplayName($groupId);
 	}
 
