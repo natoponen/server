@@ -39,15 +39,15 @@ html {
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background-color: var(--color-primary);
-	background-image: var(--image-main-background);
+	background-color: var(--color-background-plain, var(--color-main-background));
+	background-image: var(--image-background);
 	background-size: cover;
 	background-position: center;
 }
 
 body {
-	background-color: var(--color-primary);
-	background-image: var(--image-main-background);
+	background-color: var(--color-background-plain, var(--color-main-background));
+	background-image: var(--image-background-plain, var(--image-background));
 	background-size: cover;
 	background-position: center;
 	position: fixed;
@@ -179,7 +179,6 @@ kbd {
 			margin: 0;
 			margin-bottom: 3px;
 			width: 100%;
-			overflow: hidden;
 			border-radius: var(--border-radius-pill);
 
 			/* Pinned-to-bottom entries */
@@ -822,7 +821,7 @@ $min-content-width: variables.$breakpoint-mobile - variables.$navigation-width -
 		width: 100%;
 		padding: 0;
 		margin: 0;
-		background-color: var(--color-main-background);
+		background-color: transparent;
 		box-shadow: none;
 		border: 0;
 		border-radius: calc(var(--default-clickable-area) / 2);
@@ -971,13 +970,10 @@ $popoveritem-height: 44px;
 $popovericon-size: 16px;
 $outter-margin: math.div($popoveritem-height - $popovericon-size, 2);
 
-.ie,
-.edge {
-	.bubble, .bubble:after,
-	.popovermenu, .popovermenu:after,
-	#app-navigation .app-navigation-entry-menu,
-	#app-navigation .app-navigation-entry-menu:after {
-		border: 1px solid var(--color-border);
+.contact .popovermenu ul,
+.popover__menu {
+	> li > a > img {
+		 filter: var(--background-invert-if-dark);
 	}
 }
 
@@ -1163,6 +1159,7 @@ $outter-margin: math.div($popoveritem-height - $popovericon-size, 2);
 				flex: 1 1 auto;
 				/* put a small space between text and form
 				   if there is an element before */
+				align-items: center;
 				&:not(:first-child)  {
 					margin-left: 5px;
 				}
@@ -1196,7 +1193,7 @@ $outter-margin: math.div($popoveritem-height - $popovericon-size, 2);
 			&:last-of-type {
 				> button, > a, > .menuitem {
 					> form, > input {
-						margin-bottom: $outter-margin - 2px; // minus the input margin
+						margin-bottom: 0px;
 					}
 				}
 			}
@@ -1221,6 +1218,7 @@ $outter-margin: math.div($popoveritem-height - $popovericon-size, 2);
 			> button,
 			> a,
 			> .menuitem {
+				width: fit-content;
 				/* DEPRECATED! old img in popover fallback
 				* TODO: to remove */
 				> img {

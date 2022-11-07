@@ -52,6 +52,7 @@
 				<!-- the following div ensures that the spinner is always inside the #message div -->
 				<div style="clear: both;" />
 			</div>
+			<h2 class="login-form__headline">{{ t('core', 'Log in to {productName}', { productName: OC.theme.name }) }}</h2>
 			<NcTextField id="user"
 				ref="user"
 				:label="t('core', 'Account name or email')"
@@ -70,7 +71,7 @@
 				name="password"
 				:label-visible="true"
 				:class="{shake: invalidPassword}"
-				:value="password"
+				:value.sync="password"
 				:spellchecking="false"
 				autocapitalize="none"
 				:autocomplete="autoCompleteAllowed ? 'current-password' : 'off'"
@@ -202,10 +203,10 @@ export default {
 
 	mounted() {
 		if (this.username === '') {
-			this.$refs.user.focus()
+			this.$refs.user.$refs.inputField.$refs.input.focus()
 		} else {
 			this.user = this.username
-			this.$refs.password.focus()
+			this.$refs.password.$refs.inputField.$refs.input.focus()
 		}
 	},
 
@@ -231,6 +232,10 @@ export default {
 		display: flex;
 		flex-direction: column;
 		gap: .5rem;
+	}
+
+	&__headline {
+		text-align: center;
 	}
 }
 </style>

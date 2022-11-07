@@ -43,37 +43,12 @@ script('settings', [
 	</div>
 <?php endif; ?>
 
-<div id="personal-settings" data-federation-enabled="<?php p($_['federationEnabled'] ? 'true' : 'false') ?>"
-							data-lookup-server-upload-enabled="<?php p($_['lookupServerUploadEnabled'] ? 'true' : 'false') ?>">
+<div id="personal-settings">
 	<h2 class="hidden-visually"><?php p($l->t('Personal info')); ?></h2>
 	<div id="personal-settings-avatar-container" class="personal-settings-container">
 		<div id="vue-avatar-section"></div>
 		<div class="personal-settings-setting-box personal-settings-group-box section">
-			<h3><?php p($l->t('Details')); ?></h3>
-			<div id="groups" class="personal-info icon-user">
-				<p><?php p($l->t('You are a member of the following groups:')); ?></p>
-				<p id="groups-groups">
-					<strong><?php p(implode(', ', $_['groups'])); ?></strong>
-				</p>
-			</div>
-			<div id="quota" class="personal-info icon-quota">
-				<div class="quotatext-bg">
-					<p class="quotatext">
-						<?php if ($_['quota'] === \OCP\Files\FileInfo::SPACE_UNLIMITED) : ?>
-							<?php print_unescaped($l->t(
-								'You are using <strong>%s</strong>',
-								[$_['usage']]
-							)); ?>
-						<?php else : ?>
-							<?php print_unescaped($l->t(
-								'You are using <strong>%1$s</strong> of <strong>%2$s</strong> (<strong>%3$s %%</strong>)',
-								[$_['usage'], $_['total_space'],  $_['usage_relative']]
-							)); ?>
-						<?php endif ?>
-					</p>
-				</div>
-				<progress value="<?php p($_['usage_relative']); ?>" max="100" <?php if ($_['usage_relative'] > 80) : ?> class="warn" <?php endif; ?>></progress>
-			</div>
+			<div id="vue-details-section"></div>
 		</div>
 	</div>
 
@@ -122,39 +97,7 @@ script('settings', [
 			<div id="vue-language-section"></div>
 		</div>
 		<div class="personal-settings-setting-box personal-settings-locale-box">
-			<?php if (isset($_['activelocale'])) { ?>
-				<form id="locale" class="section">
-					<h3>
-						<label for="localeinput"><?php p($l->t('Locale')); ?></label>
-					</h3>
-					<select id="localeinput" name="lang" data-placeholder="<?php p($l->t('Locale')); ?>">
-						<option value="<?php p($_['activelocale']['code']); ?>">
-							<?php p($l->t($_['activelocale']['name'])); ?>
-						</option>
-						<optgroup label="––––––––––"></optgroup>
-						<?php foreach ($_['localesForLanguage'] as $locale) : ?>
-							<option value="<?php p($locale['code']); ?>">
-								<?php p($l->t($locale['name'])); ?>
-							</option>
-						<?php endforeach; ?>
-						<optgroup label="––––––––––"></optgroup>
-						<option value="<?php p($_['activelocale']['code']); ?>">
-							<?php p($l->t($_['activelocale']['name'])); ?>
-						</option>
-						<?php foreach ($_['locales'] as $locale) : ?>
-							<option value="<?php p($locale['code']); ?>">
-								<?php p($l->t($locale['name'])); ?>
-							</option>
-						<?php endforeach; ?>
-					</select>
-					<div id="localeexample" class="personal-info icon-timezone">
-						<p>
-							<span id="localeexample-date"></span> <span id="localeexample-time"></span>
-						</p>
-						<p id="localeexample-fdow"></p>
-					</div>
-				</form>
-			<?php } ?>
+			<div id="vue-locale-section"></div>
 		</div>
 		<span class="msg"></span>
 	</div>

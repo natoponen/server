@@ -402,6 +402,16 @@ table th.column-last, table td.column-last {
   min-width: 130px;
 }
 
+#app-content-recent,
+#app-content-favorites,
+#app-content-shareoverview,
+#app-content-sharingout,
+#app-content-sharingin,
+#app-content-sharinglinks,
+#app-content-deletedshares,
+#app-content-pendingshares {
+  margin-top: 22px;
+}
 #app-content-recent thead,
 #app-content-favorites thead,
 #app-content-shareoverview thead,
@@ -487,9 +497,9 @@ table tr[data-has-preview=true] .thumbnail {
   border: 1px solid var(--color-border);
 }
 
-table td.filename input.filename {
-  width: 70%;
-  margin-left: 48px;
+table:not(.view-grid) td.filename input.filename {
+  width: 70% !important;
+  margin-left: 48px !important;
   cursor: text;
 }
 
@@ -599,8 +609,8 @@ table td.selection {
 .select-all + label {
   padding: 16px;
 }
-.files-fileList tr td.selection > .selectCheckBox:focus + label,
-.select-all:focus + label {
+.files-fileList tr td.selection > .selectCheckBox:focus-visible + label,
+.select-all:focus-visible + label {
   background-color: var(--color-background-hover);
   border-radius: var(--border-radius-pill);
   outline: none !important;
@@ -691,6 +701,10 @@ a.action > img {
   height: 16px;
   width: 16px;
   vertical-align: text-bottom;
+}
+
+a.action.action-editlocally img.icon {
+  filter: var(--background-invert-if-dark);
 }
 
 /* Actions for selected files */
@@ -924,7 +938,8 @@ table.dragshadow td.size {
   -ms-user-select: none;
   user-select: none;
   display: flex;
-  top: 3px;
+  top: 0;
+  padding-top: 3px;
 }
 .files-controls .actions > div > .button, .files-controls .actions > div button, .files-controls .actions > .button, .files-controls .actions button {
   box-sizing: border-box;
@@ -958,8 +973,7 @@ table.dragshadow td.size {
   background-image: none;
 }
 .files-filestable .filename .favorite-mark .icon-starred {
-  /* $dir is the app name, so we add this to the icon var to avoid conflicts between apps */
-  background-image: var(--icon-star-dark-yellow);
+  background-image: var(--icon-starred-yellow) !important;
 }
 
 .files-filestable .filename .action .icon.hidden,
@@ -1205,6 +1219,7 @@ table.dragshadow td.size {
 .files-filestable.view-grid:not(.hidden) tbody td.filename form input.filename {
   width: 100%;
   margin-left: 0;
+  cursor: text;
 }
 .files-filestable.view-grid:not(.hidden) tbody td.filesize, .files-filestable.view-grid:not(.hidden) tbody td.date {
   display: none;
@@ -1307,6 +1322,7 @@ table.dragshadow td.size {
 #body-public #view-toggle {
   position: absolute;
   right: 0;
+  top: 0;
 }
 
 /* Hide legacy Gallery toggle */

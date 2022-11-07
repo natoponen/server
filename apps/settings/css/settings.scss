@@ -47,14 +47,6 @@ input {
 	display: inline-grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: 1fr 1fr 1fr 2fr;
-
-	#locale {
-		h3 {
-			height: 44px;
-			display: flex;
-			align-items: center;
-		}
-	}
 }
 
 .personal-show-container {
@@ -78,9 +70,7 @@ input {
 }
 
 select {
-	&#timezone,
-	&#languageinput,
-	&#localeinput {
+	&#timezone {
 		width: 100%;
 	}
 }
@@ -276,30 +266,6 @@ select {
 	}
 }
 
-
-#body-settings #quota {
-	cursor: default;
-	position: relative;
-
-	progress {
-		height: 6px;
-
-		&::-moz-progress-bar {
-			border-radius: 3px 0 0 3px;
-		}
-
-		&::-webkit-progress-value {
-			border-radius: 3px 0 0 3px;
-		}
-	}
-
-	div {
-		font-weight: normal;
-		white-space: nowrap;
-	}
-}
-
-
 /* verify accounts */
 /* only show pointer cursor when popup will be there */
 .verification-dialog {
@@ -386,10 +352,6 @@ select {
 			}
 		}
 	}
-}
-
-#groups-groups {
-	padding-top: 5px;
 }
 
 .clientsbox img {
@@ -514,6 +476,7 @@ table.nostyle {
 		width: 16px;
 		height: 16px;
 		vertical-align: sub;
+		filter: var(--background-invert-if-dark);
 	}
 }
 
@@ -900,10 +863,6 @@ span.version {
 	}
 }
 
-#version.section {
-	border-bottom: none;
-}
-
 .section {
 	margin-bottom: 0;
 	/* section divider lines, none needed for last one */
@@ -926,7 +885,6 @@ span.version {
 .followupsection {
 	display: block;
 	padding: 0 30px 30px 30px;
-	color: #555;
 }
 
 .app-image {
@@ -1604,6 +1562,10 @@ doesnotexist:-o-prefocus, .strengthify-wrapper {
 					display: -webkit-box;
 					-webkit-line-clamp: 2;
 					-webkit-box-orient: vertical;
+				}
+
+				&.name .subtitle {
+					color: var(--color-main-text);
 				}
 
 				&.quota {

@@ -78,7 +78,7 @@
 						:key="type"
 						icon="icon-filter"
 						:title="t('core', 'Search for {name} only', { name: typesMap[type] })"
-						@click="onClickFilter(`in:${type}`)">
+						@click.stop="onClickFilter(`in:${type}`)">
 						{{ `in:${type}` }}
 					</NcActionButton>
 				</NcActions>
@@ -141,7 +141,7 @@
 							? t('core', 'Loading more results …')
 							: t('core', 'Load more results')"
 						:icon-class="loading[type] ? 'icon-loading-small' : ''"
-						@click.prevent="loadMore(type)"
+						@click.stop="loadMore(type)"
 						@focus="setFocusedIndex" />
 				</li>
 			</ul>
@@ -150,7 +150,7 @@
 </template>
 
 <script>
-import { emit } from '@nextcloud/event-bus'
+import { emit, subscribe, unsubscribe } from '@nextcloud/event-bus'
 import { minSearchLength, getTypes, search, defaultLimit, regexFilterIn, regexFilterNot, enableLiveSearch } from '../services/UnifiedSearchService'
 import { showError } from '@nextcloud/dialogs'
 
@@ -272,7 +272,7 @@ export default {
 			let match
 			const filters = []
 			while ((match = regexFilterIn.exec(this.query)) !== null) {
-				filters.push(match[1])
+				filters.push(match[2])
 			}
 			return filters
 		},
@@ -286,7 +286,7 @@ export default {
 			let match
 			const filters = []
 			while ((match = regexFilterNot.exec(this.query)) !== null) {
-				filters.push(match[1])
+				filters.push(match[2])
 			}
 			return filters
 		},
@@ -329,11 +329,20 @@ export default {
 	},
 
 	async created() {
+		subscribe('files:navigation:changed', this.resetForm)
 		this.types = await getTypes()
 		this.logger.debug('Unified Search initialized with the following providers', this.types)
 	},
 
+	beforeDestroy() {
+		unsubscribe('files:navigation:changed', this.resetForm)
+	},
+
 	mounted() {
+		if (OCP.Accessibility.disableKeyboardShortcuts()) {
+			return
+		}
+
 		document.addEventListener('keydown', (event) => {
 			// if not already opened, allows us to trigger default browser on second keydown
 			if (event.ctrlKey && event.key === 'f' && !this.open) {
@@ -365,6 +374,10 @@ export default {
 		},
 		onClose() {
 			emit('nextcloud:unified-search.close')
+		},
+
+		resetForm() {
+			this.$el.querySelector('form[role="search"]').reset()
 		},
 
 		/**
@@ -431,6 +444,9 @@ export default {
 
 			// Do not search if not long enough
 			if (this.query.trim() === '' || this.isShortQuery) {
+				for (const type of this.typesIDs) {
+					this.$delete(this.results, type)
+				}
 				return
 			}
 
@@ -453,6 +469,13 @@ export default {
 			// Reset search if the query changed
 			await this.resetState()
 			this.triggered = true
+
+			if (!types.length) {
+				// no results since no types were selected
+				this.logger.error('No types to search in')
+				return
+			}
+
 			this.$set(this.loading, 'all', true)
 			this.logger.debug(`Searching ${query} in`, types)
 
@@ -695,6 +718,10 @@ $input-height: 34px;
 $input-padding: 6px;
 
 .unified-search {
+	&__trigger {
+		filter: var(--background-image-invert-if-bright);
+	}
+
 	&__input-wrapper {
 		position: sticky;
 		// above search results
@@ -710,7 +737,12 @@ $input-padding: 6px;
 			align-self: flex-start;
 			font-weight: bold;
 			font-size: 18px;
+			margin-left: 13px;
 		}
+	}
+
+	&__form-input {
+		margin: 0 !important;
 	}
 
 	&__input-row {
@@ -774,9 +806,10 @@ $input-padding: 6px;
 		&-reset, &-submit {
 			position: absolute;
 			top: 0;
-			right: 0;
+			right: 4px;
 			width: $input-height - $input-padding;
 			height: $input-height - $input-padding;
+			min-height: 30px;
 			padding: 0;
 			opacity: .5;
 			border: none;
@@ -799,11 +832,15 @@ $input-padding: 6px;
 		&-header {
 			display: block;
 			margin: $margin;
+			margin-bottom: $margin - 4px;
 			margin-left: $margin + $input-padding;
 			color: var(--color-primary-element);
 			font-weight: normal;
 			font-size: 18px;
 		}
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
 	}
 
 	.unified-search__result-more::v-deep {

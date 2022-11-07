@@ -106,11 +106,13 @@ export const PROPERTY_READABLE_KEYS_ENUM = Object.freeze({
  */
 export const ACCOUNT_SETTING_PROPERTY_ENUM = Object.freeze({
 	LANGUAGE: 'language',
+	LOCALE: 'locale',
 })
 
 /** Enum of account setting properties to human readable setting properties */
 export const ACCOUNT_SETTING_PROPERTY_READABLE_ENUM = Object.freeze({
 	LANGUAGE: t('settings', 'Language'),
+	LOCALE: t('settings', 'Locale'),
 })
 
 /** Enum of scopes */
@@ -173,7 +175,7 @@ export const SCOPE_PROPERTY_ENUM = Object.freeze({
 		name: SCOPE_ENUM.FEDERATED,
 		displayName: t('settings', 'Federated'),
 		tooltip: t('settings', 'Only synchronize to trusted servers'),
-		tooltipDisabled: t('settings', 'Not available as publishing user specific data to the lookup server is not allowed, contact your system administrator if you have any questions'),
+		tooltipDisabled: t('settings', 'Not available as federation has been disabled for your account, contact your system administrator if you have any questions'),
 		iconClass: 'icon-contacts-dark',
 	},
 	[SCOPE_ENUM.PUBLISHED]: {

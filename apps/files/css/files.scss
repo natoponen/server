@@ -317,6 +317,7 @@ table th.column-last, table td.column-last {
 #app-content-sharinglinks,
 #app-content-deletedshares,
 #app-content-pendingshares {
+	margin-top: 22px;
 	thead {
 		top: 0;
 	}
@@ -391,9 +392,9 @@ table tr[data-has-preview='true'] .thumbnail {
 	border: 1px solid var(--color-border);
 }
 
-table td.filename input.filename {
-	width: 70%;
-	margin-left: 48px;
+table:not(.view-grid) td.filename input.filename {
+	width: 70% !important;
+	margin-left: 48px !important;
 	cursor: text;
 }
 table td.filename form {
@@ -503,7 +504,7 @@ table td.selection {
 		padding: 16px;
 	}
 
-	&:focus + label {
+	&:focus-visible + label {
 		background-color: var(--color-background-hover);
 		border-radius: var(--border-radius-pill);
 		outline: none !important;
@@ -593,6 +594,10 @@ a.action > img {
 	height: 16px;
 	width: 16px;
 	vertical-align: text-bottom;
+}
+
+a.action.action-editlocally img.icon {
+	filter: var(--background-invert-if-dark);
 }
 
 /* Actions for selected files */
@@ -824,7 +829,8 @@ table.dragshadow td.size {
 	-ms-user-select: none;
 	user-select: none;
 	display: flex;
-	top: 3px;
+	top: 0;
+	padding-top: 3px;
 
 	.actions {
 		> div,
@@ -868,7 +874,7 @@ table.dragshadow td.size {
 		background-image: none;
 	}
 	& .icon-starred {
-		@include icon-color('star-dark', 'actions', variables.$color-yellow, 1, true);
+		background-image: var(--icon-starred-yellow) !important;
 	}
 }
 
@@ -1148,6 +1154,7 @@ table.dragshadow td.size {
 					input.filename {
 						width: 100%;
 						margin-left: 0;
+						cursor: text;
 					}
 				}
 			}
@@ -1279,6 +1286,7 @@ table.dragshadow td.size {
 	#view-toggle {
 		position: absolute;
 		right: 0;
+		top: 0;
 	}
 }
 
@@ -1307,4 +1315,3 @@ table.dragshadow td.size {
 		margin: 0 12px;
 	}
 }
-

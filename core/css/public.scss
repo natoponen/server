@@ -14,6 +14,7 @@ $footer-height: 65px;
 			#header-actions-toggle {
 				background-color: transparent;
 				border-color: transparent;
+				filter: var(--background-invert-if-dark);
 
 				&:hover,
 				&:focus,
@@ -45,12 +46,6 @@ $footer-height: 65px;
 	&.layout-base #content {
 		padding-top: 0;
 	}
-
-	/* force layout to make sure the content element's height matches its contents' height */
-	.ie #content {
-		display: inline-block;
-	}
-
 
 	p.info {
 		margin: 20px auto;

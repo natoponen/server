@@ -60,6 +60,7 @@
 
 <script>
 import { loadState } from '@nextcloud/initial-state'
+import { subscribe, unsubscribe } from '@nextcloud/event-bus'
 import NcActions from '@nextcloud/vue/dist/Components/NcActions'
 import NcActionLink from '@nextcloud/vue/dist/Components/NcActionLink'
 
@@ -95,13 +96,18 @@ export default {
 		this.observer = new ResizeObserver(this.resize)
 		this.observer.observe(this.$el)
 		this.resize()
+		subscribe('nextcloud:app-menu.refresh', this.setApps)
 	},
 	beforeDestroy() {
 		this.observer.disconnect()
+		unsubscribe('nextcloud:app-menu.refresh', this.setApps)
 	},
 	methods: {
 		setNavigationCounter(id, counter) {
 			this.$set(this.apps[id], 'unread', counter)
+		},
+		setApps({ apps }) {
+			this.apps = apps
 		},
 		resize() {
 			const availableWidth = this.$el.offsetWidth
@@ -138,6 +144,7 @@ $header-icon-size: 20px;
 		position: relative;
 		display: flex;
 		opacity: .7;
+		filter: var(--background-image-invert-if-bright);
 
 		&.app-menu-entry__active {
 			opacity: 1;
@@ -177,7 +184,6 @@ $header-icon-size: 20px;
 			width: $header-icon-size;
 			height: $header-icon-size;
 			padding: calc((100% - $header-icon-size) / 2);
-			filter: var(--primary-invert-if-bright);
 		}
 
 		.app-menu-entry--label {
@@ -238,6 +244,7 @@ $header-icon-size: 20px;
 	color: var(--color-primary-text);
 	opacity: .7;
 	margin: 3px;
+	filter: var(--background-image-invert-if-bright);
 
 	&:hover {
 		opacity: 1;
@@ -263,7 +270,6 @@ $header-icon-size: 20px;
 		}
 
 		img {
-			filter: var(--background-invert-if-bright);
 			width: $header-icon-size;
 			height: $header-icon-size;
 			padding: calc((50px - $header-icon-size) / 2);
