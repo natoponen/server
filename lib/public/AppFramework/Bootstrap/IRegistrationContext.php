@@ -47,7 +47,6 @@ use OCP\Preview\IProviderV2;
  * @see IBootstrap::register()
  */
 interface IRegistrationContext {
-
 	/**
 	 * @param string $capability
 	 * @psalm-param class-string<ICapability> $capability
@@ -327,4 +326,14 @@ interface IRegistrationContext {
 	 * @since 25.0.0
 	 */
 	public function registerSensitiveMethods(string $class, array $methods): void;
+
+	/**
+	 * Register a backend to provide file based on a dav path.
+	 *
+	 * @param string $class
+	 * @param string[] $methods
+	 * @return void
+	 * @since 25.0.0
+	 */
+	public function registerFileDownloadProvider(string $class): void;
 }
