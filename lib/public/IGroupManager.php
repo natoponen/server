@@ -145,4 +145,12 @@ interface IGroupManager {
 	 * @since 8.0.0
 	 */
 	public function isInGroup($userId, $group);
+
+	/**
+	 * @param string $groupId
+	 * @return ?string
+	 *
+	 * @since 26.0.0
+	 */
+	public function getDisplayName(string $groupId): ?string;
 }
