@@ -62,15 +62,15 @@
  *
  */
 
+use OC\Encryption\HookManager;
 use OC\EventDispatcher\SymfonyAdapter;
+use OC\Files\Filesystem;
+use OC\Share20\Hooks;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\Group\Events\UserRemovedEvent;
 use OCP\ILogger;
 use OCP\Server;
 use OCP\Share;
-use OC\Encryption\HookManager;
-use OC\Files\Filesystem;
-use OC\Share20\Hooks;
 use OCP\User\Events\UserChangedEvent;
 use function OCP\Log\logger;
 
@@ -845,7 +845,6 @@ class OC {
 	public static function registerCleanupHooks(\OC\SystemConfig $systemConfig) {
 		//don't try to do this before we are properly setup
 		if ($systemConfig->getValue('installed', false) && !\OCP\Util::needUpgrade()) {
-
 			// NOTE: This will be replaced to use OCP
 			$userSession = self::$server->getUserSession();
 			$userSession->listen('\OC\User', 'postLogin', function () use ($userSession) {
@@ -1144,7 +1143,7 @@ class OC {
 			'REDIRECT_HTTP_AUTHORIZATION', // apache+php-cgi alternative
 		];
 		foreach ($vars as $var) {
-			if (isset($_SERVER[$var]) && preg_match('/Basic\s+(.*)$/i', $_SERVER[$var], $matches)) {
+			if (isset($_SERVER[$var]) && is_string($_SERVER[$var]) && preg_match('/Basic\s+(.*)$/i', $_SERVER[$var], $matches)) {
 				$credentials = explode(':', base64_decode($matches[1]), 2);
 				if (count($credentials) === 2) {
 					$_SERVER['PHP_AUTH_USER'] = $credentials[0];
