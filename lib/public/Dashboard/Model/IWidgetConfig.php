@@ -40,8 +40,6 @@ use OCP\Dashboard\IDashboardWidget;
  *
  */
 interface IWidgetConfig {
-
-
 	/**
 	 * Returns the userId
 	 *

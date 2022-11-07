@@ -36,7 +36,6 @@ use Sabre\VObject\Reader;
 use Test\TestCase;
 
 class ManagerTest extends TestCase {
-
 	/** @var Coordinator|MockObject */
 	private $coordinator;
 

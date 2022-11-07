@@ -33,7 +33,6 @@ use OCP\RichObjectStrings\InvalidObjectExeption;
 use OCP\RichObjectStrings\IValidator;
 
 class Event implements IEvent {
-
 	/** @var string */
 	protected $app = '';
 	/** @var string */

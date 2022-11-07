@@ -37,7 +37,6 @@ use OCP\ISession;
 use OCP\IURLGenerator;
 
 class PublicShareMiddlewareTest extends \Test\TestCase {
-
 	/** @var IRequest|\PHPUnit\Framework\MockObject\MockObject */
 	private $request;
 	/** @var ISession|\PHPUnit\Framework\MockObject\MockObject */

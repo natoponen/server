@@ -79,7 +79,6 @@ use Psr\Log\LoggerInterface;
  * @deprecated 20.0.0
  */
 class DIContainer extends SimpleContainer implements IAppContainer {
-
 	/**
 	 * @var array
 	 */

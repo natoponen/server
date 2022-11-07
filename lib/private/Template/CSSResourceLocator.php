@@ -34,7 +34,6 @@ namespace OC\Template;
 use Psr\Log\LoggerInterface;
 
 class CSSResourceLocator extends ResourceLocator {
-
 	/**
 	 * @param string $theme
 	 * @param array $core_map

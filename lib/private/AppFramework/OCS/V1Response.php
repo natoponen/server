@@ -28,7 +28,6 @@ use OCP\AppFramework\Http;
 use OCP\AppFramework\OCSController;
 
 class V1Response extends BaseResponse {
-
 	/**
 	 * The V1 endpoint has very limited http status codes basically everything
 	 * is status 200 except 401

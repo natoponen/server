@@ -65,14 +65,14 @@ use OCP\User\Backend\ISetPasswordBackend;
  */
 class Database extends ABackend implements
 	ICreateUserBackend,
-			   ISetPasswordBackend,
-			   ISetDisplayNameBackend,
-			   IGetDisplayNameBackend,
-			   ICheckPasswordBackend,
-			   IGetHomeBackend,
-			   ICountUsersBackend,
-			   ISearchKnownUsersBackend,
-			   IGetRealUIDBackend {
+	ISetPasswordBackend,
+	ISetDisplayNameBackend,
+	IGetDisplayNameBackend,
+	ICheckPasswordBackend,
+	IGetHomeBackend,
+	ICountUsersBackend,
+	ISearchKnownUsersBackend,
+	IGetRealUIDBackend {
 	/** @var CappedMemoryCache */
 	private $cache;
 

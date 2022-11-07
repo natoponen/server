@@ -41,7 +41,6 @@ use function preg_match;
 use OCP\EventDispatcher\IEventDispatcher;
 
 class Migrator {
-
 	/** @var Connection */
 	protected $connection;
 

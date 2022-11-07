@@ -59,7 +59,6 @@ use function strtr;
  * MonoLog is an example implementing this interface.
  */
 class Log implements ILogger, IDataLogger {
-
 	/** @var IWriter */
 	private $logger;
 
@@ -247,7 +246,6 @@ class Log implements ILogger, IDataLogger {
 			// default to false to just process this once per request
 			$this->logConditionSatisfied = false;
 			if (!empty($logCondition)) {
-
 				// check for secret token in the request
 				if (isset($logCondition['shared_secret'])) {
 					$request = \OC::$server->getRequest();

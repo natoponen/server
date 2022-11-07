@@ -28,7 +28,6 @@ namespace OC\Authentication\Events;
 use OCP\EventDispatcher\Event;
 
 class LoginFailed extends Event {
-
 	/** @var string */
 	private $loginName;
 

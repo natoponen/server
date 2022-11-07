@@ -34,7 +34,6 @@ use OCP\Files\NotPermittedException;
 use OCP\IDBConnection;
 
 class BackgroundCleanupJob extends TimedJob {
-
 	/** @var IDBConnection */
 	private $connection;
 

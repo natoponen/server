@@ -37,8 +37,6 @@ use OCP\Dashboard\Service\IWidgetsService;
  * @package OC\Dashboard
  */
 class DashboardManager implements IDashboardManager {
-
-
 	/** @var IWidgetsService */
 	private $widgetsService;
 

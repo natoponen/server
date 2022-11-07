@@ -555,7 +555,7 @@ class ManagerTest extends TestCase {
 					case 'user33': return true;
 					default:
 						return null;
-					}
+				}
 			});
 
 		$this->userManager->expects($this->any())
@@ -607,14 +607,14 @@ class ManagerTest extends TestCase {
 			->method('inGroup')
 			->willReturnCallback(function ($uid, $gid) {
 				switch ($uid) {
-						case 'user1': return false;
-						case 'user2': return true;
-						case 'user3': return false;
-						case 'user33': return true;
-						case 'user333': return true;
-						default:
-							return null;
-					}
+					case 'user1': return false;
+					case 'user2': return true;
+					case 'user3': return false;
+					case 'user33': return true;
+					case 'user333': return true;
+					default:
+						return null;
+				}
 			});
 
 		$this->userManager->expects($this->any())
@@ -668,14 +668,14 @@ class ManagerTest extends TestCase {
 			->method('inGroup')
 			->willReturnCallback(function ($uid) {
 				switch ($uid) {
-						case 'user1': return false;
-						case 'user2': return true;
-						case 'user3': return false;
-						case 'user33': return true;
-						case 'user333': return true;
-						default:
-							return null;
-					}
+					case 'user1': return false;
+					case 'user2': return true;
+					case 'user3': return false;
+					case 'user33': return true;
+					case 'user333': return true;
+					default:
+						return null;
+				}
 			});
 
 		$this->userManager->expects($this->any())

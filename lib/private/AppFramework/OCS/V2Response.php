@@ -27,7 +27,6 @@ use OCP\AppFramework\Http;
 use OCP\AppFramework\OCSController;
 
 class V2Response extends BaseResponse {
-
 	/**
 	 * The V2 endpoint just passes on status codes.
 	 * Of course we have to map the OCS specific codes to proper HTTP status codes

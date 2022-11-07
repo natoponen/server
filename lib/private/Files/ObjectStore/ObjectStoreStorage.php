@@ -332,7 +332,7 @@ class ObjectStoreStorage extends \OC\Files\Storage\Common {
 				} else {
 					return false;
 				}
-			// no break
+				// no break
 			case 'w':
 			case 'wb':
 			case 'w+':

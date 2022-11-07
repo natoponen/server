@@ -42,8 +42,6 @@ use OCP\Dashboard\Service\IWidgetsService;
  *
  */
 interface IDashboardManager {
-
-
 	/**
 	 * Register a IWidgetsService.
 	 *

@@ -30,7 +30,6 @@ use OCP\IUserManager;
  * @package Test\Share20
  */
 class ShareTest extends \Test\TestCase {
-
 	/** @var IRootFolder|\PHPUnit\Framework\MockObject\MockObject */
 	protected $rootFolder;
 	/** @var \OCP\Share\IShare */

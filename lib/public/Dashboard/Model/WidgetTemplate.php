@@ -41,8 +41,6 @@ use JsonSerializable;
  *
  */
 final class WidgetTemplate implements JsonSerializable {
-
-
 	/** @var string */
 	private $icon = '';
 

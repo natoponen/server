@@ -28,7 +28,6 @@ namespace OC\Log;
 use OCP\Log\IWriter;
 
 class Errorlog implements IWriter {
-
 	/** @var string */
 	protected $tag;
 

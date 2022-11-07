@@ -48,7 +48,6 @@ use Psr\Log\LoggerInterface;
  * Class to dispatch the request to the middleware dispatcher
  */
 class Dispatcher {
-
 	/** @var MiddlewareDispatcher */
 	private $middlewareDispatcher;
 
@@ -164,7 +163,7 @@ class Dispatcher {
 		} catch (\Throwable $throwable) {
 			$exception = new \Exception($throwable->getMessage() . ' in file \'' . $throwable->getFile() . '\' line ' . $throwable->getLine(), $throwable->getCode(), $throwable);
 			$response = $this->middlewareDispatcher->afterException(
-			$controller, $methodName, $exception);
+				$controller, $methodName, $exception);
 		}
 
 		$response = $this->middlewareDispatcher->afterController(
@@ -197,7 +196,6 @@ class Dispatcher {
 		$types = ['int', 'integer', 'bool', 'boolean', 'float'];
 
 		foreach ($this->reflector->getParameters() as $param => $default) {
-
 			// try to get the parameter from the request object and cast
 			// it to the type annotated in the @param annotation
 			$value = $this->request->getParam($param, $default);
@@ -227,7 +225,6 @@ class Dispatcher {
 
 		// format response
 		if ($response instanceof DataResponse || !($response instanceof Response)) {
-
 			// get format from the url format or request format parameter
 			$format = $this->request->getParam('format');
 

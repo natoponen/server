@@ -44,7 +44,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Test\TestCase;
 
 class LoginControllerTest extends TestCase {
-
 	/** @var LoginController */
 	private $loginController;
 

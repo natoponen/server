@@ -39,8 +39,6 @@ use OCP\Dashboard\IDashboardManager;
  *
  */
 interface IEventsService {
-
-
 	/**
 	 * Create an event for a widget and an array of users.
 	 *

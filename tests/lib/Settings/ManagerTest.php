@@ -38,7 +38,6 @@ use Psr\Log\LoggerInterface;
 use Test\TestCase;
 
 class ManagerTest extends TestCase {
-
 	/** @var Manager|\PHPUnit\Framework\MockObject\MockObject */
 	private $manager;
 	/** @var LoggerInterface|\PHPUnit\Framework\MockObject\MockObject */

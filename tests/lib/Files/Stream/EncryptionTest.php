@@ -12,7 +12,6 @@ use OCP\IConfig;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class EncryptionTest extends \Test\TestCase {
-
 	/** @var  \OCP\Encryption\IEncryptionModule | \PHPUnit\Framework\MockObject\MockObject  */
 	private $encryptionModule;
 
@@ -85,7 +84,6 @@ class EncryptionTest extends \Test\TestCase {
 								   $expectedSize,
 								   $expectedUnencryptedSize,
 								   $expectedReadOnly) {
-
 		// build mocks
 		$encryptionModuleMock = $this->getMockBuilder('\OCP\Encryption\IEncryptionModule')
 		->disableOriginalConstructor()->getMock();

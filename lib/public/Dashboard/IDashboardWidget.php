@@ -49,7 +49,6 @@ use OCP\Dashboard\Model\WidgetTemplate;
  *
  */
 interface IDashboardWidget {
-
 	/**
 	 * Should returns the (unique) Id of the widget.
 	 *

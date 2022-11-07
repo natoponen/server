@@ -371,12 +371,12 @@ class Folder extends Node implements \OCP\Files\Folder {
 
 		return [$this->root->createNode(
 			$absolutePath, new \OC\Files\FileInfo(
-			$absolutePath,
-			$mount->getStorage(),
-			$cacheEntry->getPath(),
-			$cacheEntry,
-			$mount
-		))];
+				$absolutePath,
+				$mount->getStorage(),
+				$cacheEntry->getPath(),
+				$cacheEntry,
+				$mount
+			))];
 	}
 
 	public function getFreeSpace() {

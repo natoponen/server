@@ -31,7 +31,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Test\TestCase;
 
 class StorageTest extends TestCase {
-
 	/** @var Storage */
 	protected $storage;
 

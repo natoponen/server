@@ -42,7 +42,6 @@ use OCP\Dashboard\IDashboardWidget;
  *
  */
 interface IWidgetRequest {
-
 	/**
 	 * Get the widgetId.
 	 *

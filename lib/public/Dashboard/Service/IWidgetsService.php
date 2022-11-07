@@ -40,7 +40,6 @@ use OCP\Dashboard\Model\IWidgetConfig;
  *
  */
 interface IWidgetsService {
-
 	/**
 	 * Returns the IWidgetConfig for a widgetId and userId
 	 *
